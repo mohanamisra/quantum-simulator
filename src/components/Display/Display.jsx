@@ -89,7 +89,7 @@ const Display = () => {
                             )
                         })}
                     </div>
-                    <span className="wire-output">X</span>
+                    <span className="wire-output"></span>
                 </div>
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop2}>
                     <span className="qubit-name">q[0]</span>
@@ -114,7 +114,7 @@ const Display = () => {
                             )
                         })}
                     </div>
-                    <span className="wire-output">X</span>
+                    <span className="wire-output"></span>
                 </div>
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop3}>
                     <span className="qubit-name">q[0]</span>
@@ -138,7 +138,7 @@ const Display = () => {
                             )
                         })}
                     </div>
-                    <span className="wire-output">X</span>
+                    <div className="wire-output"></div>
                 </div>
             </div>
         </section>
