@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import './Display.css'
 
 const Display = () => {
@@ -39,6 +39,32 @@ const Display = () => {
         e.preventDefault();
         console.log("dragging over");
     }
+
+    const handleWireInputChange = (e, wireNum) => {
+        const value = e.target.value;
+        if (value === '0' || value === '1' || value === '') {
+            switch(wireNum) {
+                case 1:
+                    setWireInput1(value);
+                    break;
+                case 2:
+                    setWireInput2(value);
+                    break;
+                case 3:
+                    setWireInput3(value);
+                    break;
+            }
+        }
+    };
+
+    const calculateWireOutputOnChange = (wireNum, oldOutput) => {
+        let newOutput;
+        for(let i = 0; i < gatesList1.length; i++) {
+            newOutput = calculateWireOutput(oldOutput, gatesList1[i].operator);
+        }
+        setWireOutput1(newOutput);
+    }
+
 
     const calculateWireOutput = (oldOutput, operator) => {
         let newOutput;
@@ -89,23 +115,7 @@ const Display = () => {
             alert("ERROR: A maximum of 5 gates are allowed on the simulator quantum wire at a time.")
         }
     }
-
-    const handleWireInputChange = (e, wireNum) => {
-        const value = e.target.value;
-        if (value === '0' || value === '1' || value === '') {
-            switch(wireNum) {
-                case 1:
-                    setWireInput1(value);
-                    break;
-                case 2:
-                    setWireInput2(value);
-                    break;
-                case 3:
-                    setWireInput3(value);
-                    break;
-            }
-        }
-    };
+    
 
     return (
         <section className="display">
