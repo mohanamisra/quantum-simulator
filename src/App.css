@@ -7,9 +7,3 @@
     display: flex;
     justify-content: space-between;
 }
-
-.display {
-    border: 3px solid #333333;
-    height: 500px;
-    width: 500px;
-}
