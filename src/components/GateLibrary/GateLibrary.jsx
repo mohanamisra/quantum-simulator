@@ -11,14 +11,19 @@ const GateLibrary = () => {
 
     const [gates, setGates] = useState(['and', 'or', 'not']);
 
+    const handleDrag = (e) => {
+        console.log("dragging starts");
+    };
+
     return (
         <section className="gate-library">
             <h2>Gates</h2>
             <div className = "gate-repo">
                 {gates.map((gate, index) => {
-                    console.log(gateSymbolMap[gate]);
-                    return(
-                        <Gate key = {index} operator={gate} symbol={gateSymbolMap[gate]}/>
+                    return (
+                        <Gate key = {index} operator={gate} symbol={gateSymbolMap[gate]}
+                        draggable={true}
+                        onDragStart={handleDrag}/>
                     )
                 })}
             </div>
