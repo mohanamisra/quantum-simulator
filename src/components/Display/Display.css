@@ -29,4 +29,14 @@
     border: 2px solid black;
     min-width: 80%;
     max-height: 0;
+    position: relative;
+}
+
+.wire-gates-area {
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    left: 150px;
+    z-index: 10;
 }
