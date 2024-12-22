@@ -45,7 +45,6 @@ const Display = () => {
         switch(operator) {
             case "not":
                 newOutput = Number(!oldOutput);
-                setWireOutput1(newOutput);
                 break;
         }
         return newOutput;
