@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.display {
+    border: 3px solid #333333;
+    height: 500px;
+    width: 500px;
+}
+
+.gate-repo {
+    border: 3px solid #333333;
+    height: 500px;
+    width: 500px;
+}
