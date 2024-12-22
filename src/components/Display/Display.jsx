@@ -69,10 +69,19 @@ const Display = () => {
             <div className="circuit-area">
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop1}>
                     <span className="qubit-name">q[0]</span>
-                    <input className="wire-input"/>
+                    <input
+                        className="wire-input"
+                        type="text"
+                        maxLength="1"
+                        onInput={(e) => {
+                            if (!['0', '1'].includes(e.target.value)) {
+                                e.target.value = ''; // Clear invalid input
+                            }
+                        }}
+                    />
                     <div className="wire"></div>
-                    <div className = "wire-gates-area">
-                        {gatesList1.map((gate, index)=> {
+                    <div className="wire-gates-area">
+                        {gatesList1.map((gate, index) => {
                             return(
                                 <div key = {index} className="wire-gate gate">
                                     <span>{gate.symbol}</span>
@@ -84,12 +93,22 @@ const Display = () => {
                 </div>
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop2}>
                     <span className="qubit-name">q[0]</span>
-                    <input className="wire-input"/>
+                    <input
+                        className="wire-input"
+                        type="text"
+                        maxLength="1"
+                        onInput={(e) => {
+                            if (!['0', '1'].includes(e.target.value)) {
+                                e.target.value = ''; // Clear invalid input
+                            }
+                        }}
+                    />
+
                     <div className="wire"></div>
-                    <div className = "wire-gates-area">
-                        {gatesList2.map((gate, index)=> {
-                            return(
-                                <div key = {index} className="wire-gate gate">
+                    <div className="wire-gates-area">
+                        {gatesList2.map((gate, index) => {
+                            return (
+                                <div key={index} className="wire-gate gate">
                                     <span>{gate.symbol}</span>
                                 </div>
                             )
@@ -99,12 +118,21 @@ const Display = () => {
                 </div>
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop3}>
                     <span className="qubit-name">q[0]</span>
-                    <input className="wire-input"/>
+                    <input
+                        className="wire-input"
+                        type="text"
+                        maxLength="1"
+                        onInput={(e) => {
+                            if (!['0', '1'].includes(e.target.value)) {
+                                e.target.value = ''; // Clear invalid input
+                            }
+                        }}
+                    />
                     <div className="wire"></div>
-                    <div className = "wire-gates-area">
-                        {gatesList3.map((gate, index)=> {
-                            return(
-                                <div key = {index} className="wire-gate gate">
+                    <div className="wire-gates-area">
+                        {gatesList3.map((gate, index) => {
+                            return (
+                                <div key={index} className="wire-gate gate">
                                     <span>{gate.symbol}</span>
                                 </div>
                             )
