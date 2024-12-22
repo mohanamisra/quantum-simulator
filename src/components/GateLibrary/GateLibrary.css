@@ -1,0 +1,14 @@
+.gate-library {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid #333333;
+    height: 500px;
+    width: 500px;
+}
+
+.gate-repo {
+    border: 3px solid #777777;
+    display: flex;
+    gap: 8px;
+    height: 100%;
+}
