@@ -1,9 +1,9 @@
 import './Gate.css'
 
-const Gate = ({name, symbol, draggable}) => {
+const Gate = ({name, symbol, type, draggable}) => {
 
     const handleDragStart = (e) => {
-        const gateData = JSON.stringify({ name, symbol });
+        const gateData = JSON.stringify({ name, symbol , type});
         e.dataTransfer.setData("text/plain", gateData);
     };
 

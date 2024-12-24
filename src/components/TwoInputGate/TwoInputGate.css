@@ -1,0 +1,11 @@
+.vertical-line {
+    width: 3px;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.wire-gate.gate.type2 {
+    position: relative;
+}

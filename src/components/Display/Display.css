@@ -45,14 +45,3 @@
     height: 50px;
     width: 50px;
 }
-
-.vertical-line {
-    width: 3px;
-    height: 159px;
-    background-color: black;
-}
-
-.wire-gate.gate.type2 {
-    position: relative;
-    top: 75px;
-}

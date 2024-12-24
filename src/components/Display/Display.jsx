@@ -1,14 +1,19 @@
-import {useState, useEffect} from "react";
+import {useState, useRef, useEffect} from "react";
 import './Display.css'
+import TwoInputGate from "../TwoInputGate/TwoInputGate.jsx";
 
 const Display = () => {
+    const wireRef1 = useRef();
+    const wireRef2 = useRef();
+    const wireRef3 = useRef();
+
     const [gatesList1, setGatesList1] = useState([
         // MOCK DATA TO USE IN DEV
-        {name:"and", symbol: ".", type: 2},
-        {name:"or", symbol: "+", type: 2},
-        {name:"not", symbol: "~", type: 1},
-        {name:"or", symbol: "+", type: 2},
-        {name:"and", symbol: "~", type: 1},
+        // {name:"and", symbol: ".", type: 2},
+        // {name:"or", symbol: "+", type: 2},
+        // {name:"not", symbol: "~", type: 1},
+        // {name:"or", symbol: "+", type: 2},
+        // {name:"and", symbol: "~", type: 1},
     ]);
     const [wireOutput1, setWireOutput1] = useState(0)
 
@@ -53,6 +58,7 @@ const Display = () => {
     const handleDrop1 = (e) => {
         if(gatesList1.length < 5) {
             let newGate = JSON.parse(e.dataTransfer.getData("text/plain"));
+            console.log(newGate);
             newGate = {id: gatesList1.length, ...newGate};
             setGatesList1([...gatesList1, newGate]);
 
@@ -90,7 +96,26 @@ const Display = () => {
             alert("ERROR: A maximum of 5 gates are allowed on the simulator quantum wire at a time.")
         }
     }
-    
+
+    const [wirePositions, setWirePositions] = useState({
+        wire1: null,
+        wire2: null,
+        wire3: null,
+    });
+
+    useEffect(() => {
+        // Calculate and set wire positions
+        const updateWirePositions = () => {
+            console.log(wireRef2.current?.getBoundingClientRect().y);
+            setWirePositions({
+                wire1: wireRef1.current?.getBoundingClientRect().y || 0,
+                wire2: wireRef2.current?.getBoundingClientRect().y || 0,
+                wire3: wireRef3.current?.getBoundingClientRect().y || 0,
+            });
+        };
+
+        updateWirePositions();
+    }, []);
 
     return (
         <section className="display">
@@ -99,10 +124,11 @@ const Display = () => {
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop1}>
                     <span className="qubit-name">q[0]</span>
                     <div className="wire-input">|0⟩</div>
-                    <div className="wire"></div>
+                    <div className="wire" ref = {wireRef1}></div>
                     <div className="wire-gates-area">
                         {gatesList1.map((gate, index) => {
                             if(gate.type === 1) {
+                                console.log("hiya");
                                 return (
                                     <div key={index} className="wire-gate gate">
                                         <span>{gate.symbol}</span>
@@ -111,10 +137,7 @@ const Display = () => {
                             }
                             else if(gate.type === 2) {
                                 return (
-                                    <div key={index} className="wire-gate gate type2">
-                                        <span>{gate.symbol}</span>
-                                        <div className="vertical-line"></div>
-                                    </div>
+                                    <TwoInputGate key = {index} gate={gate} top = {wirePositions.wire1} bottom = {wirePositions.wire2} />
                                 );
                             }
                         })}
@@ -124,7 +147,7 @@ const Display = () => {
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop2}>
                     <span className="qubit-name">q[0]</span>
                     <div className="wire-input">|0⟩</div>
-                    <div className="wire"></div>
+                    <div className="wire" ref = {wireRef2}></div>
                     <div className="wire-gates-area">
                         {gatesList2.map((gate, index) => {
                             return (
@@ -139,7 +162,7 @@ const Display = () => {
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop3}>
                     <span className="qubit-name">q[0]</span>
                     <div className="wire-input">|0⟩</div>
-                    <div className="wire"></div>
+                    <div className="wire" ref = {wireRef3}></div>
                     <div className="wire-gates-area">
                         {gatesList3.map((gate, index) => {
                             return (

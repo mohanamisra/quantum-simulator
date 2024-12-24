@@ -1,14 +1,9 @@
 import {useState} from "react";
 import './GateLibrary.css'
 import Gate from "../Gate/Gate.jsx"
+import {gatesMap} from "../data/gatesMap.js"
 
 const GateLibrary = () => {
-    const gateSymbolMap = {
-        'and' : '.',
-        'or' : '+',
-        'not' : '~',
-    }
-
     const [gates, setGates] = useState(['and', 'or', 'not']);
 
     return (
@@ -19,7 +14,8 @@ const GateLibrary = () => {
                     return (
                         <Gate key = {index}
                               name={gate}
-                              symbol={gateSymbolMap[gate]}
+                              symbol={gatesMap[gate].symbol}
+                              type={gatesMap[gate].type}
                               draggable={true}/>
                     )
                 })}
