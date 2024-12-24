@@ -10,7 +10,6 @@ const Display = () => {
         // {"operator":"or", "symbol": "+"},
         // {"operator":"and", "symbol": "."},
     ]);
-    const [wireInput1, setWireInput1] = useState(0)
     const [wireOutput1, setWireOutput1] = useState(0)
 
     const [gatesList2, setGatesList2] = useState([
@@ -21,7 +20,6 @@ const Display = () => {
         // {"operator":"or", "symbol": "+"},
         // {"operator":"and", "symbol": "."},
     ]);
-    const [wireInput2, setWireInput2] = useState(0)
     const [wireOutput2, setWireOutput2] = useState(0)
 
     const [gatesList3, setGatesList3] = useState([
@@ -32,7 +30,6 @@ const Display = () => {
         // {"operator":"or", "symbol": "+"},
         // {"operator":"and", "symbol": "."},
     ]);
-    const [wireInput3, setWireInput3] = useState(0)
     const [wireOutput3, setWireOutput3] = useState(0)
 
     const handleDragOver = (e) => {
@@ -57,6 +54,7 @@ const Display = () => {
             setGatesList1([...gatesList1, newGate]);
 
             const newOutput = calculateWireOutput(wireOutput1, newGate.operator);
+            console.log(newOutput);
             setWireOutput1(newOutput);
         }
         else {
