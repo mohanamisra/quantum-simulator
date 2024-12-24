@@ -7,7 +7,7 @@ const TwoInputGate = ({ gate, top, bottom }) => {
     return (
         <div className="wire-gate gate type2"
              style={{
-                 top: `${top - 69}px`,
+                 top: `77px`,
              }}
         >
             <span>{gate.symbol}</span>

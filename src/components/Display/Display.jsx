@@ -19,11 +19,11 @@ const Display = () => {
 
     const [gatesList2, setGatesList2] = useState([
         // MOCK DATA TO USE IN DEV
-        // {"operator":"and", "symbol": "."},
-        // {"operator":"or", "symbol": "+"},
-        // {"operator":"not", "symbol": "~"},
-        // {"operator":"or", "symbol": "+"},
-        // {"operator":"and", "symbol": "."},
+        // {name:"and", symbol: ".", type: 2},
+        // {name:"or", symbol: "+", type: 2},
+        // {name:"not", symbol: "~", type: 1},
+        // {name:"or", symbol: "+", type: 2},
+        // {name:"and", symbol: "~", type: 1},
     ]);
     const [wireOutput2, setWireOutput2] = useState(0)
 
@@ -58,12 +58,10 @@ const Display = () => {
     const handleDrop1 = (e) => {
         if(gatesList1.length < 5) {
             let newGate = JSON.parse(e.dataTransfer.getData("text/plain"));
-            console.log(newGate);
             newGate = {id: gatesList1.length, ...newGate};
             setGatesList1([...gatesList1, newGate]);
 
             const newOutput = calculateWireOutput(wireOutput1, newGate.name);
-            console.log(newOutput);
             setWireOutput1(newOutput);
         }
         else {
@@ -106,7 +104,6 @@ const Display = () => {
     useEffect(() => {
         // Calculate and set wire positions
         const updateWirePositions = () => {
-            console.log(wireRef2.current?.getBoundingClientRect().y);
             setWirePositions({
                 wire1: wireRef1.current?.getBoundingClientRect().y || 0,
                 wire2: wireRef2.current?.getBoundingClientRect().y || 0,
@@ -128,7 +125,6 @@ const Display = () => {
                     <div className="wire-gates-area">
                         {gatesList1.map((gate, index) => {
                             if(gate.type === 1) {
-                                console.log("hiya");
                                 return (
                                     <div key={index} className="wire-gate gate">
                                         <span>{gate.symbol}</span>
@@ -150,11 +146,19 @@ const Display = () => {
                     <div className="wire" ref = {wireRef2}></div>
                     <div className="wire-gates-area">
                         {gatesList2.map((gate, index) => {
-                            return (
-                                <div key={index} className="wire-gate gate">
-                                    <span>{gate.symbol}</span>
-                                </div>
-                            )
+                            if(gate.type === 1) {
+                                return (
+                                    <div key={index} className="wire-gate gate">
+                                        <span>{gate.symbol}</span>
+                                    </div>
+                                )
+                            }
+                            else if(gate.type === 2) {
+                                console.log(wirePositions.wire3);
+                                return (
+                                    <TwoInputGate key = {index} gate={gate} top = {wirePositions.wire2} bottom = {wirePositions.wire3} />
+                                );
+                            }
                         })}
                     </div>
                     <div className="wire-output">{wireOutput2}</div>
