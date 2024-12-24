@@ -40,32 +40,6 @@ const Display = () => {
         console.log("dragging over");
     }
 
-    const handleWireInputChange = (e, wireNum) => {
-        const value = e.target.value;
-        if (value === '0' || value === '1' || value === '') {
-            switch(wireNum) {
-                case 1:
-                    setWireInput1(value);
-                    break;
-                case 2:
-                    setWireInput2(value);
-                    break;
-                case 3:
-                    setWireInput3(value);
-                    break;
-            }
-        }
-    };
-
-    const calculateWireOutputOnChange = (wireNum, oldOutput) => {
-        let newOutput;
-        for(let i = 0; i < gatesList1.length; i++) {
-            newOutput = calculateWireOutput(oldOutput, gatesList1[i].operator);
-        }
-        setWireOutput1(newOutput);
-    }
-
-
     const calculateWireOutput = (oldOutput, operator) => {
         let newOutput;
         switch(operator) {
@@ -123,13 +97,7 @@ const Display = () => {
             <div className="circuit-area">
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop1}>
                     <span className="qubit-name">q[0]</span>
-                    <input
-                        className="wire-input"
-                        value = {wireInput1}
-                        type="text"
-                        maxLength="1"
-                        onChange={(e)=>handleWireInputChange(e, 1)}
-                    />
+                    <div className="wire-input">|0⟩</div>
                     <div className="wire"></div>
                     <div className="wire-gates-area">
                         {gatesList1.map((gate, index) => {
@@ -144,13 +112,7 @@ const Display = () => {
                 </div>
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop2}>
                     <span className="qubit-name">q[0]</span>
-                    <input
-                        className="wire-input"
-                        value={wireInput2}
-                        type="text"
-                        maxLength="1"
-                        onChange={(e)=>handleWireInputChange(e, 2)}
-                    />
+                    <div className="wire-input">|0⟩</div>
                     <div className="wire"></div>
                     <div className="wire-gates-area">
                         {gatesList2.map((gate, index) => {
@@ -165,13 +127,7 @@ const Display = () => {
                 </div>
                 <div className="circuit-block" onDragOver={handleDragOver} onDrop={handleDrop3}>
                     <span className="qubit-name">q[0]</span>
-                    <input
-                        className="wire-input"
-                        value={wireInput3}
-                        type="text"
-                        maxLength="1"
-                        onChange={(e)=>handleWireInputChange(e, 3)}
-                    />
+                    <div className="wire-input">|0⟩</div>
                     <div className="wire"></div>
                     <div className="wire-gates-area">
                         {gatesList3.map((gate, index) => {
