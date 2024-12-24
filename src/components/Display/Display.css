@@ -36,7 +36,7 @@
     display: flex;
     gap: 20px;
     align-items: center;
-    left: 150px;
+    left: 75px;
     z-index: 10;
 }
 
@@ -44,4 +44,15 @@
     border: 1px solid black;
     height: 50px;
     width: 50px;
+}
+
+.vertical-line {
+    width: 3px;
+    height: 159px;
+    background-color: black;
+}
+
+.wire-gate.gate.type2 {
+    position: relative;
+    top: 75px;
 }

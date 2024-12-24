@@ -68,7 +68,6 @@ const Display = () => {
         if(gatesList2.length < 5) {
             let newGate = JSON.parse(e.dataTransfer.getData("text/plain"));
             newGate = {id: gatesList2.length, ...newGate};
-            console.log(newGate);
             setGatesList2([...gatesList2, newGate]);
 
             const newOutput = calculateWireOutput(wireOutput2, newGate.name);
@@ -111,7 +110,12 @@ const Display = () => {
                                 )
                             }
                             else if(gate.type === 2) {
-                                console.log(gate.symbol);
+                                return (
+                                    <div key={index} className="wire-gate gate type2">
+                                        <span>{gate.symbol}</span>
+                                        <div className="vertical-line"></div>
+                                    </div>
+                                );
                             }
                         })}
                     </div>
