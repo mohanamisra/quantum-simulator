@@ -4,11 +4,11 @@ import './Display.css'
 const Display = () => {
     const [gatesList1, setGatesList1] = useState([
         // MOCK DATA TO USE IN DEV
-        // {"operator":"and", "symbol": "."},
-        // {"operator":"or", "symbol": "+"},
-        // {"operator":"not", "symbol": "~"},
-        // {"operator":"or", "symbol": "+"},
-        // {"operator":"and", "symbol": "."},
+        {name:"and", symbol: ".", type: 2},
+        {name:"or", symbol: "+", type: 2},
+        {name:"not", symbol: "~", type: 1},
+        {name:"or", symbol: "+", type: 2},
+        {name:"and", symbol: "~", type: 1},
     ]);
     const [wireOutput1, setWireOutput1] = useState(0)
 
@@ -37,11 +37,14 @@ const Display = () => {
         console.log("dragging over");
     }
 
-    const calculateWireOutput = (oldOutput, operator) => {
+    const calculateWireOutput = (inputA, operator, inputB=0) => {
         let newOutput;
         switch(operator) {
             case "not":
-                newOutput = Number(!oldOutput);
+                newOutput = Number(!inputA);
+                break;
+            case "and":
+                // && two inputs
                 break;
         }
         return newOutput;
@@ -53,7 +56,7 @@ const Display = () => {
             newGate = {id: gatesList1.length, ...newGate};
             setGatesList1([...gatesList1, newGate]);
 
-            const newOutput = calculateWireOutput(wireOutput1, newGate.operator);
+            const newOutput = calculateWireOutput(wireOutput1, newGate.name);
             console.log(newOutput);
             setWireOutput1(newOutput);
         }
@@ -65,9 +68,10 @@ const Display = () => {
         if(gatesList2.length < 5) {
             let newGate = JSON.parse(e.dataTransfer.getData("text/plain"));
             newGate = {id: gatesList2.length, ...newGate};
+            console.log(newGate);
             setGatesList2([...gatesList2, newGate]);
 
-            const newOutput = calculateWireOutput(wireOutput2, newGate.operator);
+            const newOutput = calculateWireOutput(wireOutput2, newGate.name);
             setWireOutput2(newOutput);
         }
         else {
@@ -80,7 +84,7 @@ const Display = () => {
             newGate = {id: gatesList3.length, ...newGate};
             setGatesList3([...gatesList3, newGate]);
 
-            const newOutput = calculateWireOutput(wireOutput3, newGate.operator);
+            const newOutput = calculateWireOutput(wireOutput3, newGate.name);
             setWireOutput3(newOutput);
         }
         else {
@@ -99,11 +103,16 @@ const Display = () => {
                     <div className="wire"></div>
                     <div className="wire-gates-area">
                         {gatesList1.map((gate, index) => {
-                            return(
-                                <div key = {index} className="wire-gate gate">
-                                    <span>{gate.symbol}</span>
-                                </div>
-                            )
+                            if(gate.type === 1) {
+                                return (
+                                    <div key={index} className="wire-gate gate">
+                                        <span>{gate.symbol}</span>
+                                    </div>
+                                )
+                            }
+                            else if(gate.type === 2) {
+                                console.log(gate.symbol);
+                            }
                         })}
                     </div>
                     <div className="wire-output">{wireOutput1}</div>

@@ -18,7 +18,7 @@ const GateLibrary = () => {
                 {gates.map((gate, index) => {
                     return (
                         <Gate key = {index}
-                              operator={gate}
+                              name={gate}
                               symbol={gateSymbolMap[gate]}
                               draggable={true}/>
                     )
