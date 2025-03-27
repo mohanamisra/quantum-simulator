@@ -66,7 +66,7 @@ class QuantumCircuitBuilder:
 
 
 # Read JSON input and run the circuit
-with open('./circuit.json', 'r') as file:
+with open('./init_circuit.json', 'r') as file:
     json_data = json.load(file)
 
 circuit_builder = QuantumCircuitBuilder(json_data['qubits'], json_data['classical_bits'])

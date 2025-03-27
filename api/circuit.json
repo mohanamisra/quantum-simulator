@@ -9,4 +9,4 @@
       {"gate": "H", "qubit": 0, "time": 3},
       {"gate": "barrier", "qubits": [0, 1], "time": 4}
     ]
-  }
+}
