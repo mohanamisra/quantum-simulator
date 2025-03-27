@@ -1,0 +1,12 @@
+{
+    "qubits": 2,
+    "classical_bits": 2,
+    "gates": [
+      {"gate": "H", "qubit": 0, "time": 0},
+      {"gate": "barrier", "qubits": [0, 1], "time": 0},
+      {"gate": "CNOT", "control": 0,"target": 1, "time": 1},
+      {"gate": "barrier", "qubits": [0, 1], "time": 2},
+      {"gate": "H", "qubit": 0, "time": 3},
+      {"gate": "barrier", "qubits": [0, 1], "time": 4}
+    ]
+  }
